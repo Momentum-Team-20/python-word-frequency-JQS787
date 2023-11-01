@@ -1,27 +1,45 @@
+import string
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
     'will', 'with'
 ]
 
-#def print_word_freq(file):
-    #"""Read in `file` and print out the frequency of words in that file."""
+ # def print_word_freq(file):
+    # """Read in `file` and print out the frequency of words in that file."""
     
 
-import string
+
 
 with open ("the-hill-we-climb.txt","r") as f:
     text = f.read()
     words = text.split()
-    #print (words)
+    # print (words)
     table = str.maketrans("", "", string.punctuation)
     stripped = [word.translate(table) for word in words]
-    print (stripped)
+    # print (stripped)
+    lowercase = [word.lower() for word in stripped]
     
-    #assemble = " ".join(stripped)
-    #print (assemble)
+    nonstop = []
+    for word in lowercase:
+        if word not in STOP_WORDS:
+            nonstop.append(word)
+    
+    word_count = {}
+    for word in nonstop:
+        word_count[word] = word_count.get(word, 0) + 1
+    print(word_count)
+    for word, count in word_count.items():
+        print(word, count)
+
+
 
    
+
+
+
+
+
 
 
 
