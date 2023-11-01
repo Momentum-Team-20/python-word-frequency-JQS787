@@ -4,10 +4,28 @@ STOP_WORDS = [
     'will', 'with'
 ]
 
-
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
-    pass
+    from collections import Counter
+
+    try:
+        with open(file, 'r', encoding='utf-8') as f:
+            contenido = f.readline()
+            palabras = contenido.split()
+
+            return Counter(palabras)
+    except FileNotFoundError:
+        print('El archivo especificado no se ha encontrado.')
+
+
+nombre_archivo = 'the-hill-we-climb.txt'
+conteo = print_word_freq(nombre_archivo)
+
+print(conteo)
+
+
+
+
 
 
 if __name__ == "__main__":
